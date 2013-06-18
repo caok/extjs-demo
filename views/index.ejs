@@ -2,7 +2,15 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" type="text/css" href="/javascripts/extjs/resources/css/ext-all.css" />
+    <script type="text/javascript" src="/javascripts/extjs/ext-all.js"></script>
+    <script type="text/javascript" src="/javascripts/extjs/ext-lang-zh_CN.js"></script>
+    <script>
+      Ext.Loader.setConfig({
+        enabled: true
+      });
+    </script>
+    <script type="text/javascript" src="/javascripts/app.js"> </script>
   </head>
   <body>
     <h1><%= title %></h1>
