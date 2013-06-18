@@ -1,0 +1,16 @@
+ilib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+.cov
+
+pids
+logs
+results
+
+npm-debug.log
+node_modules
