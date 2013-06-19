@@ -8,7 +8,6 @@ Ext.define('Demo.model.Articles', {
       name: 'user',
       type: 'string'
     }, {
-    }, {
       name: 'title',
       type: 'string'
     }, {
