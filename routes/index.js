@@ -1,9 +1,5 @@
 var Article = require('../models/article.js');
 
-exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
-};
-
 module.exports = function (app) {
   // 主页
   app.get('/', function(req, res){

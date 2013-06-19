@@ -1,12 +1,16 @@
 Ext.define('Demo.store.Articles', {
   extend: 'Ext.data.Store',
-  model: 'Demo.model.Articles',
 
-  data: [{
-    id: '1',
-    user: 'tom',
-    title: 'The Matrix',
-    content: 'hello Tom',
-    happened_at: '2013-6-1'
-  }]
+  model: 'Demo.model.Articles',
+  autoLoad: true,
+
+  proxy: {
+    type: 'ajax',
+    url: '/articles',
+    reader: {
+      type: 'json',
+      root: 'articles',
+      successProperty: 'success'
+    }
+  }
 });
