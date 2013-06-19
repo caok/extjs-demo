@@ -2,6 +2,8 @@ Ext.define("Demo.controller.Articles", {
   extend: 'Ext.app.Controller',
 
   views: ['Articles'],
+  models: ['Articles'],
+  stores: ['Articles'],
 
   init: function () {
     this.control({
