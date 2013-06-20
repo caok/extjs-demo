@@ -1,15 +1,16 @@
 Ext.define('Demo.store.Articles', {
   extend: 'Ext.data.Store',
 
-  model: 'Demo.model.Articles',
   autoLoad: true,
+  autoSync: true,
 
   proxy: {
-    type: 'ajax',
+    type: 'rest',
     url: '/articles',
+    model: 'Demo.model.Articles',
     reader: {
       type: 'json',
-      root: 'articles',
+      root: 'data',
       successProperty: 'success'
     }
   }

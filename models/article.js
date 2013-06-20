@@ -1,6 +1,6 @@
 var mysql = require('./db');
 
-function Article(username, title, content, happened_at) {
+function Article(username, title, content, happened_at, id) {
   this.user    = username;
   this.title   = title;
   this.content = content;
@@ -9,6 +9,7 @@ function Article(username, title, content, happened_at) {
   } else {
     this.happened_at = new Date();
   }
+  this.id = id;
 }
 
 Article.prototype.save = function save(callback) {
@@ -36,6 +37,26 @@ Article.get = function get(query, callback){
     callback(err, rows);
   });
 };
+
+//改
+Article.prototype.update = function (callback) {
+  var sql = 'update `articles` set user = ?, ' +
+                                  'title = ?, ' +
+                                  'content = ?, ' +
+                                  'happened_at = ? where id = ?';
+  var params = [this.user,
+                this.title,
+                this.content,
+                this.happened_at,
+                this.id];
+
+  mysql.query(sql, params, function (err, result) {
+    if (err) {
+      callback(err);
+    }
+    callback(err, result);
+  });
+}
 
 //删
 Article.remove = function(query, callback) {
