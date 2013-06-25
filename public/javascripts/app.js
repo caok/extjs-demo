@@ -6,12 +6,7 @@ Ext.application({
     Ext.create('Ext.container.Viewport', {
       layout: 'fit',
       items: [{
-        xtype: 'panel',
-        title: 'Demo for Extjs',
-        //html: 'you can see demo here'
-        items: [{
-          xtype: 'articleseditor'
-        }]
+        xtype: 'article-list'
       }]
     });
   }

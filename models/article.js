@@ -12,6 +12,7 @@ function Article(username, title, content, happened_at, id) {
   this.id = id;
 }
 
+//新建
 Article.prototype.save = function save(callback) {
   var article = {
     user        : this.user,

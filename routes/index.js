@@ -25,6 +25,20 @@ module.exports = function (app) {
     });
   });
 
+  // 新建文章
+  app.post('/articles', function(req, res) {
+    article = new Article(req.body.user, req.body.title, req.body.content, req.body.happened_at);
+    article.save(function(err, result){
+      if(err){
+        console.log('发布失败!');
+        res.json({success: false});
+      }
+      console.log('发布成功!');
+      //insertId用于更新页面表单中的id
+      res.json({success: true, data: article, id: result.insertId});
+    });
+  });
+
   // 编辑文章
   app.put('/articles/:id', function(req, res) {
     article = new Article(req.body.user, req.body.title, req.body.content, req.body.happened_at, req.body.id);
