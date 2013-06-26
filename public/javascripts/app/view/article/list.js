@@ -25,6 +25,7 @@ Ext.define('Demo.view.article.list', {
       xtype : 'datecolumn',
       format : 'Y-m-d',
       flex: 1
+      }]
     }];
     //新建按钮
     this.addArticleButton = new Ext.Button({
@@ -33,7 +34,35 @@ Ext.define('Demo.view.article.list', {
       action: 'addArticle'
     });
 
-    this.bbar = [this.addArticleButton];
+    this.editArticleButton = new Ext.Button({
+      icon: 'images/edit.ico',
+      text: 'Edit Article',
+      action: 'editArticle',
+      disabled: true
+    });
+
+    this.deleteArticleButton = new Ext.Button({
+      icon: 'images/del.ico',
+      text: 'Delete Article',
+      action: 'deleteArticle',
+      disabled: true
+    });
+
+    this.bbar = [this.addArticleButton, this.editArticleButton, this.deleteArticleButton];
     this.callParent(arguments);
+  },
+
+  getSelectedArticle: function() {
+    return this.getSelectionModel().getSelection()[0];
+  },
+
+  enableRecordButtons: function() {
+    this.editArticleButton.enable();
+    this.deleteArticleButton.enable();
+  },
+
+  disableRecordButtons: function() {
+    this.editArticleButton.disable();
+    this.deleteArticleButton.disable();
   }
 });

@@ -1,24 +1,46 @@
 Ext.define("Demo.controller.Articles", {
   extend: 'Ext.app.Controller',
 
-  views: ['article.list', 'article.form'],
   models: ['Articles'],
   stores: ['Articles'],
+  views: ['article.list', 'article.form'],
+
+  refs: [{
+    ref: 'list',
+    selector: 'article-list'
+  }],
 
   init: function () {
     this.control({
+      'article-list': {
+        itemdblclick: this.editArticle,
+        selectionchange: this.selectionChange
+      },
       'article-form button[action=save]': {
         click: this.createOrUpdateArticle
       },
       '#article-list button[action=addArticle]': {
         click: this.addArticle
       },
+      '#article-list button[action=editArticle]': {
+        click: this.editArticle
+      },
+      '#article-list button[action=deleteArticle]': {
+        click: this.deleteArticle
+      }
     });
   },
 
   addArticle: function () {
+    console.log(this.getlist);
     var view = Ext.widget('article-form');
     view.show();
+  },
+
+  editArticle: function(record) {
+    var record = this.getList().getSelectedArticle();
+    var view = Ext.widget('article-form');
+    view.down('form').loadRecord(record);
   },
 
   //some errors
@@ -61,6 +83,26 @@ Ext.define("Demo.controller.Articles", {
       });
     } else {
       form.getForm().markInvalid(errors);
+    }
+  },
+
+  deleteArticle: function() {
+    var record = this.getList().getSelectedArticle();
+
+    if (record) {
+      var store = this.getArticlesStore();
+      store.remove(record);
+      store.sync();
+    }
+  },
+
+  selectionChange: function(selectionModel, selections) {
+    var grid = this.getList();
+
+    if (selections.length > 0) {
+      grid.enableRecordButtons();
+    } else {
+      grid.disableRecordButtons();
     }
   }
 });

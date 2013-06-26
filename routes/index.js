@@ -53,4 +53,16 @@ module.exports = function (app) {
     });
   });
 
+  // 删除文章
+  app.delete('/articles/:id', function(req, res) {
+    var query = 'id = ' + req.body.id;
+    Article.remove(query, function(err) {
+      if(err){
+        console.log('删除失败!');
+        return res.json({success: false});
+      }
+      console.log('删除成功!');
+      res.json({success: true});
+    });
+  });
 }
