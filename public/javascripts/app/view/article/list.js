@@ -29,21 +29,6 @@ Ext.define('Demo.view.article.list', {
       xtype : 'datecolumn',
       format : 'Y-m-d',
       flex: 1
-    //}, {
-      //header: "操作",
-      //xtype: 'actioncolumn',
-      //items: [{
-        //icon: 'images/edit.ico',
-        //action: 'editArticle',
-        //handler: function(grid, rowIndex, colIndex) {
-          ////获取被操作的数据记录
-          //var rec = grid.getStore().getAt(rowIndex);
-          //console.log("编辑 " + rec.get('title'));
-        //}
-      //},{
-        //icon: 'images/del.ico',
-        //action: 'delArticle'
-      //}]
     }];
     //新建按钮
     this.addArticleButton = new Ext.Button({
