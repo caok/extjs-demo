@@ -35,7 +35,8 @@ module.exports = function (app) {
       }
       console.log('发布成功!');
       //insertId用于更新页面表单中的id
-      res.json({success: true, data: article, id: result.insertId});
+      article.id = result.insertId;
+      res.json({success: true, data: article});
     });
   });
 
