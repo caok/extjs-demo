@@ -32,7 +32,6 @@ Ext.define("Demo.controller.Articles", {
   },
 
   addArticle: function () {
-    console.log(this.getlist);
     var view = Ext.widget('article-form');
     view.show();
   },
