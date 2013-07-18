@@ -16,12 +16,18 @@ module.exports = function (app) {
 
   // 文章清单
   app.get('/articles', function(req, res) {
-    Article.get(null, function(err, articles){
+    var totalCount = 0;
+    query= "limit " + req.query.start + "," + req.query.limit
+    Article.getQuantity(function(err, total){
+      console.log(total);
+      totalCount = total;
+    });
+    Article.get(query, function(err, articles){
       if(err){
         articles = [];
       }
       res.contentType('json');
-      res.json({success: true, data: articles});
+      res.json({success: true, data: articles, totalCount: totalCount});
     });
   });
 

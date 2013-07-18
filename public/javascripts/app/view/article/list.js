@@ -6,7 +6,6 @@ Ext.define('Demo.view.article.list', {
   store: 'Articles',
 
   initComponent: function () {
-    //note: store removed
     this.columns = [{
       header: 'id',
       dataIndex: 'id',
@@ -51,7 +50,15 @@ Ext.define('Demo.view.article.list', {
       disabled: true
     });
 
-    this.bbar = [this.addArticleButton, this.editArticleButton, this.deleteArticleButton];
+    this.tbar = [this.addArticleButton, this.editArticleButton, this.deleteArticleButton];
+
+    this.paging = new Ext.PagingToolbar({
+      //pageSize: 10,
+      store: 'Articles',
+      displayInfo: true
+    });
+
+    this.bbar = [this.paging];
     this.callParent(arguments);
   },
 

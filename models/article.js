@@ -29,13 +29,25 @@ Article.prototype.save = function save(callback) {
 };
 
 Article.get = function get(query, callback){
-  var sql = 'SELECT * FROM `articles`' + (query ? (' WHERE ' + query) : '')
+  var sql = 'SELECT * FROM `articles`' + (query ? query : '')
+  //var sql = 'SELECT * FROM `articles`' + (query ? (' WHERE ' + query) : '')
 
   mysql.query(sql, function(err, rows, fields) {
     if(err){
       callback(err);
     }
     callback(err, rows);
+  });
+};
+
+Article.getQuantity = function get(callback){
+  var sql = 'SELECT COUNT(*) AS total FROM `articles`'
+
+  mysql.query(sql, function(err, rows) {
+    if(err){
+      callback(err);
+    }
+    callback(err, rows[0].total);
   });
 };
 

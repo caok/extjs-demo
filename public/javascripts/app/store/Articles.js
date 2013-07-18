@@ -2,7 +2,10 @@ Ext.define('Demo.store.Articles', {
   extend: 'Ext.data.Store',
 
   model: 'Demo.model.Articles',
-  autoLoad: true,
+  pageSize: 10,
+  //baseParams: {limit: 10},
+  autoLoad: {params: {start:0, limit:10}},
+  //autoLoad: true,
   autoSync: false,
 
   //listeners: {
@@ -25,6 +28,7 @@ Ext.define('Demo.store.Articles', {
     reader: {
       type: 'json',
       root: 'data',
+      totalProperty: 'totalCount',
       successProperty: 'success'
     }
   }
