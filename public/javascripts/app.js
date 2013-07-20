@@ -2,8 +2,68 @@ Ext.application({
   name: "Demo",
   appFolder: "/javascripts/app",
   controllers: ['Articles'],
+  //controllers: ['Main', 'Articles'],
   launch: function () {
+    var rightTab=new Ext.TabPanel({
+      id:'rightTab',
+      layout: 'fit',
+      region:'center'
+    });
 
+    var loadNodeInfo=function(tree,record){
+      var id=record.data.id;
+      console.log(record.data.id);
+      if(!id){
+        Ext.Msg.alert('提示信息', '节点必须设置唯一的id');
+        return;
+      }
+      var comp=rightTab.getComponent(id);
+      if(!comp){
+        console.log(rightTab);
+        comp=new Ext.Panel({
+          id:id,
+          layout:'fit',
+          closable:true,
+          colseAction:'destory',
+          title:record.data.text||"",
+          html:record.data.text
+        });
+        var view = Ext.widget('article-list');
+        //rightTab.add(comp);
+        rightTab.add(view);
+      }
+      rightTab.setActiveTab(comp);
+      //rightTab.scrollToTab(comp);
+    };
+
+    var leftTree=new Ext.tree.TreePanel({
+      id:'leftTree',
+      title: '菜单',
+      autoScroll: true,
+      rootVisible: true,
+      collapsible: true,
+      region: 'west',
+      width: 200,
+      split: true,
+      root:{
+        text:'日月神教',
+        expanded:true,
+        leaf:false,
+        children:[
+          //{
+            //text:'黑木崖',
+            //leaf:false,
+            //expanded:true,
+            //children:[
+              {id:'hello',text:'任我行',leaf:true},
+              {id:'2',text:'令狐冲',leaf:true},
+              {id:'3',text:'任盈盈',leaf:true}
+            //]
+          //}
+        ]
+      },
+      listeners:{'itemclick':loadNodeInfo}
+    });
 
     Ext.create('Ext.container.Viewport', {
       layout: 'border',
@@ -13,36 +73,42 @@ Ext.application({
         html: '<br><center><font size = 6>系统</font></center>',
         region: 'north',
         height: 100
-      },{
-        title: '菜单',
-        split: true,
-        collapsible: true,
-        region: 'west',
-        width: 250,
-        layout: 'accordion',
-        //layoutConfig: {
-          //titleCollapse: false,
-          //animate: true,
-          //activeOnTop: true
-        //},
-        items: [
-          { title: 'Panel 1',
-          },
-          { title: 'Panel 2',
-            html: '<p>Panel 2</p>'
-          },
-          { title: 'Panel 3',
-            html: '<p>Panel 3</p>'
-          }
-        ]
-      },{
-        layout: 'fit',
-        region: 'center',
-        contentE1: 'contentIframe',
-        //id: 'mainContent'
+      },
+      leftTree,rightTab
+      //{
+        //title: '菜单',
+        //split: true,
         //collapsible: true,
-        xtype: 'article-list'
-      }]
+        //region: 'west',
+        //width: 250,
+        //layout: 'accordion',
+        //items: leftTree
+        ////layoutConfig: {
+          ////titleCollapse: false,
+          ////animate: true,
+          ////activeOnTop: true
+        ////},
+        ////items: [
+          ////{ title: 'Panel 1',
+            ////items: leftTree
+          ////},
+          ////{ title: 'Panel 2',
+            ////html: '<p>Panel 2</p>'
+          ////},
+          ////{ title: 'Panel 3',
+            ////html: '<p>Panel 3</p>'
+          ////}
+        ////]
+      //}
+      //},{
+        //layout: 'fit',
+        //region: 'center',
+        //contentE1: 'contentIframe',
+        ////id: 'mainContent'
+        ////collapsible: true,
+        //xtype: 'article-list'
+      //}
+      ]
     });
   }
 });

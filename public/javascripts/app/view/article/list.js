@@ -4,6 +4,8 @@ Ext.define('Demo.view.article.list', {
   alias: 'widget.article-list',
   title: 'All articles',
   store: 'Articles',
+  closable:true,
+  colseAction:'destory',
 
   initComponent: function () {
     this.columns = [{
