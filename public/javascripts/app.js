@@ -19,18 +19,20 @@ Ext.application({
       }
       var comp=rightTab.getComponent(id);
       if(!comp){
-        console.log(rightTab);
-        comp=new Ext.Panel({
-          id:id,
-          layout:'fit',
-          closable:true,
-          colseAction:'destory',
-          title:record.data.text||"",
-          html:record.data.text
-        });
-        var view = Ext.widget('article-list');
-        //rightTab.add(comp);
-        rightTab.add(view);
+        if (id == "article-list"){
+          var view = Ext.widget('article-list');
+          rightTab.add(view);
+        }else{
+          comp=new Ext.Panel({
+            id:id,
+            layout:'fit',
+            closable:true,
+            colseAction:'destory',
+            title:record.data.text||"",
+            html:record.data.text
+          });
+          rightTab.add(comp);
+        }
       }
       rightTab.setActiveTab(comp);
       //rightTab.scrollToTab(comp);
@@ -46,7 +48,7 @@ Ext.application({
       width: 200,
       split: true,
       root:{
-        text:'日月神教',
+        text:'一级目录',
         expanded:true,
         leaf:false,
         children:[
@@ -55,9 +57,9 @@ Ext.application({
             //leaf:false,
             //expanded:true,
             //children:[
-              {id:'hello',text:'任我行',leaf:true},
-              {id:'2',text:'令狐冲',leaf:true},
-              {id:'3',text:'任盈盈',leaf:true}
+              {id:'article-list',text:'article',leaf:true},
+              {id:'2',text:'节点2',leaf:true},
+              {id:'3',text:'节点3',leaf:true}
             //]
           //}
         ]
