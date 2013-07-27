@@ -1,5 +1,8 @@
 Ext.define("Demo.controller.Articles", {
   extend: 'Ext.app.Controller',
+  config: {
+    name: 'Product Name'
+  },
 
   models: ['Articles'],
   stores: ['Articles'],
@@ -29,6 +32,7 @@ Ext.define("Demo.controller.Articles", {
         click: this.deleteArticle
       }
     });
+    //this.callParent(arguments);
   },
 
   addArticle: function () {
