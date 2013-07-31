@@ -1,5 +1,6 @@
 Ext.define("Demo.controller.Articles", {
   extend: 'Ext.app.Controller',
+  id: 'article-controller',
   config: {
     name: 'Product Name'
   },
@@ -14,6 +15,7 @@ Ext.define("Demo.controller.Articles", {
   }],
 
   init: function () {
+    console.log("init");
     this.control({
       'article-list': {
         itemdblclick: this.editArticle,
