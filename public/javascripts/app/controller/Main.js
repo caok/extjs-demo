@@ -27,7 +27,7 @@ Ext.define("Demo.controller.Main",{
             Ext.require('Demo.controller.Articles', function() {
               //此处会异步执行，先执行ext.require之外的代码
               var article = new Demo.controller.Articles();
-              article.init(Demo)
+              article.init(Demo);
               panel = { xtype: 'article-list' };
               my.openTab(panel,record.get('id'));
             });
