@@ -9,27 +9,35 @@ Ext.define('Demo.view.article.form', {
   initComponent: function() {
     this.items = [{
       xtype: 'form',
+      bodyPadding: 8,
+      width: 580,
+      fieldDefaults: {
+        msgTarget: 'side',
+        labelWidth: 65,
+        inputWidth: 300
+      },
+      defaultType: 'textfield',
       items: [{
         xtype: 'hidden',
         name : 'id',
         fieldLabel: 'id'
       }, {
-        xtype: 'textfield',
         name : 'user',
         fieldLabel: '作者'
       }, {
-        xtype: 'textfield',
         name : 'title',
         fieldLabel: '标题'
-      }, {
-        xtype: 'textfield',
-        name : 'content',
-        fieldLabel: '内容'
       }, {
         xtype: 'datefield',
         name : 'happened_at',
         fieldLabel: '发生时间',
         format: 'Y-m-d'
+      }, {
+        name : 'content',
+        fieldLabel: '内容',
+        xtype: 'htmleditor',
+        height: 200,
+        anchor: '100%'
       }]
     }];
 

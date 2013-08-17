@@ -20,6 +20,7 @@ Ext.define("Demo.controller.Main",{
   loadMenu:function(selModel, record){
     if (record.get('leaf')) {
       var my = this;
+      console.log(my);
       var panel = Ext.getCmp(record.get('id'));
       if(!panel){
         switch (record.get('id')) {
